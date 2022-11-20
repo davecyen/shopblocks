@@ -129,10 +129,10 @@ export default function Example() {
               </a>
               <a
                 href="#"
-                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 dark:text-indigo-300 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:ring-indigo-200/20"
+                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 hover:from-blue-400 to-indigo-500 hover:to-indigo-500 dark:text-indigo-300 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:text-indigo-200 dark:hover:ring-indigo-200/20"
               >
                 View on GitHub
-                <span className="text-indigo-700 ml-1" aria-hidden="true">
+                <span className="text-indigo-500 ml-1" aria-hidden="true">
                   &rarr;
                 </span>
               </a>

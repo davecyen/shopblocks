@@ -1181,6 +1181,11 @@ video {
   color: rgb(67 56 202 / var(--tw-text-opacity));
 }
 
+.text-indigo-500 {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -1251,6 +1256,15 @@ video {
 
 .hover\:to-indigo-600:hover {
   --tw-gradient-to: #4f46e5;
+}
+
+.hover\:to-indigo-500:hover {
+  --tw-gradient-to: #6366f1;
+}
+
+.hover\:text-indigo-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(224 231 255 / var(--tw-text-opacity));
 }
 
 .hover\:ring-indigo-900\/20:hover {
@@ -1380,6 +1394,11 @@ video {
 
 .dark .dark\:ring-indigo-200\/10 {
   --tw-ring-color: rgb(199 210 254 / 0.1);
+}
+
+.dark .dark\:hover\:text-indigo-200:hover {
+  --tw-text-opacity: 1;
+  color: rgb(199 210 254 / var(--tw-text-opacity));
 }
 
 .dark .dark\:hover\:ring-indigo-200\/20:hover {
