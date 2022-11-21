@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@layer components {
+  .dots {
+    @apply bg-gray-50 border border-sky-50;
+    background-image: radial-gradient(theme(colors.sky.400) 0.5px, theme(colors.gray.50) 0.5px);
+    background-size: 10px 10px;
+  }
+  
+  .dark-dots {
+    @apply bg-slate-900 border border-slate-900;
+    background-image: radial-gradient(theme(colors.slate.700) 0.5px, theme(colors.slate.900) 0.5px) !important;
+    background-size: 10px 10px;
+  }
+}

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Tab } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, ClipboardIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, ClipboardIcon, EyeIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
 import { Search } from '~/components/Search'
 import { ThemeSelector } from '~/components/ThemeSelector'
 import { Link } from '@remix-run/react'
@@ -13,8 +13,8 @@ import {
   LiveProvider,
   LiveEditor,
   LiveError,
-  LivePreview
-} from 'react-live'
+  LivePreview,
+} from 'react-live';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -22,10 +22,14 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const code = `
-  <h1 className="text-3xl font-bold">Hello World</h1>
-  `
 
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  
+  const code = `<header className="bg-white">Hello</header>`;
+  const pluginCode = `module.exports = {
+    //...
+    plugins: ['shopblocks'],
+  }`;
   return (
     <>
     <div className="min-h-full">
@@ -65,7 +69,7 @@ export default function Example() {
             </div>
           </nav>
           <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
+            <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto scrollbar-hide bg-white px-6 py-6 lg:hidden">
               <div className="flex h-9 items-center justify-between">
                 <div className="flex">
                   <a href="#" className="-m-1.5 p-1.5">
@@ -129,12 +133,9 @@ export default function Example() {
               </a>
               <a
                 href="#"
-                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 hover:from-blue-400 to-indigo-500 hover:to-indigo-500 dark:text-indigo-300 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:text-indigo-200 dark:hover:ring-indigo-200/20"
+                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 hover:from-blue-400 to-indigo-500 hover:to-indigo-500 dark:text-slate-50 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:ring-indigo-200/20"
               >
                 View on GitHub
-                <span className="text-indigo-500 ml-1" aria-hidden="true">
-                  &rarr;
-                </span>
               </a>
             </div>
             <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
@@ -145,52 +146,73 @@ export default function Example() {
       </main>
     </div>
     <div className="px-6 pt-6 lg:px-32 min-h-full">
-      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-indigo-100">
-        Getting started
-      </h2>
-      
-      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-indigo-100">
-        Branding
-      </h2>
-      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-indigo-100 mb-12">
-        Navigation
-      </h2>
-      <LiveProvider code={code}>
+      <div className="my-24">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-slate-50 mb-12">
+          Getting started
+        </h2>
+        <div className="my-2">
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 my-0">1. Install shopblocks:</h3>
+          <pre className="bg-slate-800 text-slate-50 flex my-4 rounded-xl p-6 font-mono text-sm">npm install @shopify/shopblocks</pre>
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 mt-12">2. Add the shopblocks plugin to your Tailwind config:</h3>
+          <LiveProvider code={pluginCode}>
+            <LiveEditor className="bg-slate-800 text-slate-50 flex my-4 rounded-xl p-2 font-mono text-sm" />
+          </LiveProvider>
+        </div>
+      </div>
+      <div className="my-24">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-slate-50 mb-12">
+          Navigation
+        </h2>
         <div className="flex flex-col items-start justify-between space-y-4 md:flex-row md:items-center md:space-y-0 my-2">
-          <h3 className="text-xl font-medium tracking-tight sm:text-lg text-slate-900 dark:text-indigo-100 my-0">Navbar with leading links and trailing buttons</h3>
-          <div className="flex space-x-2 flex-wrap">
-            <Tab.Group>
-              <Tab.List>
-                <Tab>Tab 1</Tab>
-                <Tab>Tab 2</Tab>
-                <Tab>Tab 3</Tab>
-              </Tab.List>
-              <div className="w-full">
-                <Tab.Panels>
-                  <Tab.Panel>Content 1</Tab.Panel>
-                  <Tab.Panel>Content 2</Tab.Panel>
-                  <Tab.Panel>Content 3</Tab.Panel>
-                </Tab.Panels>
-              </div>
-            </Tab.Group>
-          </div>
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 my-0">Navbar with leading links and trailing buttons</h3>
+          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+            <Tab.List className="flex space-x-1 rounded-full bg-gray-50 dark:bg-slate-800 p-1">
+              <Tab className={({ selected }) =>
+                classNames(
+                  'w-full rounded-full py-1.5 px-2.5 text-sm font-medium leading-5 flex items-center',
+                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-indigo-400 focus:outline-none focus:ring-2',
+                  selected
+                    ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-slate-50' 
+                    : 'text-slate-300 dark:text-slate-500 hover:bg-white/[0.12] dark:hover:bg-slate-500/[0.12] hover:text-slate-700'
+                )
+              }><EyeIcon className="h-4 w-4 mr-2 font-bold opacity-70" />Preview</Tab>
+              <Tab className={({ selected }) =>
+                classNames(
+                  'w-full rounded-full py-1.5 px-2.5 text-sm font-medium leading-5 flex items-center',
+                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-indigo-400 focus:outline-none focus:ring-2',
+                  selected
+                    ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-slate-50'
+                    : 'text-slate-300 dark:text-slate-500 hover:bg-white/[0.12] dark:hover:bg-slate-500/[0.12] hover:text-slate-700'
+                )
+              }><CodeBracketIcon className="h-4 w-4 mr-2 font-bold opacity-70" />Code</Tab>
+            </Tab.List>
+          </Tab.Group>
         </div>
         <div className="relative">
-          <LivePreview className="dark:bg-slate-800 bg-gray-50 flex h-[560px] overflow-scroll items-center justify-center rounded-xl p-2" />
-          <div className="relative">
-            <div className="absolute inset-x-0 top-0 z-10 m-[2px] md:left-auto">
-              <div className="flex items-stretch justify-end rounded-t-[10px] px-2 py-1 md:m-1 md:rounded-lg">
-                <button className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-800/80 hover:bg-slate-800/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-xl border-none border-transparent bg-transparent py-2 px-3 text-xs">
-                  <span className="sr-only">Copy code</span>
-                  <ClipboardIcon className="h-5 w-5 mr-1" /> Copy
-                </button>
+          <LiveProvider code={code}>
+            {selectedIndex === 0 ? 
+            <LivePreview className="flex h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-xl p-2 dots dark:dark-dots" /> :
+            (
+              <div className="relative">
+                <div className="absolute inset-x-0 top-0 z-10 m-[2px] md:left-auto">
+                  <div className="flex items-stretch justify-end rounded-t-[10px] px-2 py-1 md:m-1 md:rounded-lg">
+                    <button className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-700/80 hover:bg-slate-700/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-xl border-none border-transparent bg-slate-900/70 py-2 px-3 text-xs">
+                      <span className="sr-only">Copy code</span>
+                      <ClipboardIcon className="h-4 w-4 mr-1" /> Copy
+                    </button>
+                  </div>
+                </div>
+                <LiveEditor className="bg-slate-800 flex h-[560px] overflow-scroll scrollbar-hide rounded-xl p-2 font-mono text-sm" />
+                <LiveError />
               </div>
-            </div>
-            <LiveEditor className="bg-slate-700 flex h-[560px] overflow-scroll rounded-xl p-2 font-mono text-sm" />
-            <LiveError />
-          </div>
+            )
+            }
+          </LiveProvider>
         </div>
-      </LiveProvider>
+      </div>  
+      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-slate-50">
+        Branding and themes
+      </h2>
       <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-indigo-100">
         Search
       </h2>
