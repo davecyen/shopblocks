@@ -12,6 +12,10 @@
   scrollbar-width: none;  /* Firefox */
 }
 
+.token-line:not(:last-child) {
+  min-height: 1rem;
+}
+
 @layer components {
   .preview {
     @apply flex max-h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-lg shadow-inner; 
