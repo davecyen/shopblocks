@@ -25,7 +25,17 @@ export default function Example() {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   
-  const code = `<header className="bg-white">Hello</header>`;
+  const code = `
+<header className="bg-white text-slate-900 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
+  <div className="flex gap-12">
+    <a className="font-bold" href="/">Hydrogen</a>
+    <nav className="flex gap-8">
+      <a target="_self" href="/collections">Collections</a>
+      <a target="_self" href="/products">Products</a>
+      <a target="_self" href="/journal">Journal</a>
+    </nav>
+  </div>
+</header>`;
   const pluginCode = `module.exports = {
     //...
     plugins: ['shopblocks'],
@@ -118,7 +128,7 @@ export default function Example() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-slate-900 dark:text-indigo-100">
               Customizable UI components for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-700 dark:from-blue-400 dark:to-indigo-600">commerce</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300 sm:text-center">
+            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:text-center">
               A component library for building custom storefronts. Styled with Tailwind CSS.
             </p>
             <div className="mt-8 flex gap-x-4 sm:justify-center">
@@ -152,10 +162,10 @@ export default function Example() {
         </h2>
         <div className="my-2">
           <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 my-0">1. Install shopblocks:</h3>
-          <pre className="bg-slate-800 text-slate-50 flex my-4 rounded-xl p-6 font-mono text-sm">npm install @shopify/shopblocks</pre>
+          <pre className="bg-slate-800 text-slate-50 flex my-4 rounded-lg p-6 font-mono text-sm">npm install @shopify/shopblocks</pre>
           <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 mt-12">2. Add the shopblocks plugin to your Tailwind config:</h3>
           <LiveProvider code={pluginCode}>
-            <LiveEditor className="bg-slate-800 text-slate-50 flex my-4 rounded-xl p-2 font-mono text-sm" />
+            <LiveEditor className="bg-slate-800 text-slate-50 flex my-4 rounded-lg p-2 font-mono text-sm" />
           </LiveProvider>
         </div>
       </div>
@@ -164,7 +174,7 @@ export default function Example() {
           Navigation
         </h2>
         <div className="flex flex-col items-start justify-between space-y-4 md:flex-row md:items-center md:space-y-0 my-2">
-          <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 my-0">Navbar with leading links and trailing buttons</h3>
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 my-0">Simple Navbar</h3>
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex space-x-1 rounded-full bg-gray-50 dark:bg-slate-800 p-1">
               <Tab className={({ selected }) =>
@@ -191,18 +201,18 @@ export default function Example() {
         <div className="relative">
           <LiveProvider code={code}>
             {selectedIndex === 0 ? 
-            <LivePreview className="flex h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-xl p-2 dots dark:dark-dots" /> :
+            <LivePreview className="dots dark:dark-dots" /> :
             (
               <div className="relative">
                 <div className="absolute inset-x-0 top-0 z-10 m-[2px] md:left-auto">
                   <div className="flex items-stretch justify-end rounded-t-[10px] px-2 py-1 md:m-1 md:rounded-lg">
-                    <button className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-700/80 hover:bg-slate-700/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-xl border-none border-transparent bg-slate-900/70 py-2 px-3 text-xs">
+                    <button className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-700/80 hover:bg-slate-700/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-lg border-none border-transparent bg-slate-900/70 py-2 px-3 text-xs">
                       <span className="sr-only">Copy code</span>
                       <ClipboardIcon className="h-4 w-4 mr-1" /> Copy
                     </button>
                   </div>
                 </div>
-                <LiveEditor className="bg-slate-800 flex h-[560px] overflow-scroll scrollbar-hide rounded-xl p-2 font-mono text-sm" />
+                <LiveEditor className="bg-slate-800 flex h-[560px] overflow-scroll scrollbar-hide rounded-lg p-2 font-mono text-sm" />
                 <LiveError />
               </div>
             )

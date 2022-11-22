@@ -13,15 +13,19 @@
 }
 
 @layer components {
+  .preview {
+    @apply flex max-h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-lg shadow-inner; 
+  }
+
   .dots {
-    @apply bg-gray-50 border border-sky-50;
-    background-image: radial-gradient(theme(colors.sky.400) 0.5px, theme(colors.gray.50) 0.5px);
+    @apply flex max-h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-lg shadow-inner bg-gray-50 border border-sky-50 p-4 md:p-10;
+    background-image: radial-gradient(#38bdf8 0.5px, #f9fafb 0.5px); 
     background-size: 10px 10px;
   }
   
   .dark-dots {
-    @apply bg-slate-900 border border-slate-900;
-    background-image: radial-gradient(theme(colors.slate.700) 0.5px, theme(colors.slate.900) 0.5px) !important;
+    @apply flex max-h-[560px] overflow-scroll scrollbar-hide items-center justify-center rounded-lg shadow-inner bg-slate-900 border border-slate-900 p-4 md:p-10;
+    background-image: radial-gradient(#334155 0.5px, #0f172a 0.5px) !important;
     background-size: 10px 10px;
   }
 }
