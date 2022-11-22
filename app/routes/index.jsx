@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, useState } from 'react'
 import { Dialog, Tab } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, ClipboardIcon, EyeIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, DocumentIcon, EyeIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
 import { Search } from '~/components/Search'
 import { ThemeSelector } from '~/components/ThemeSelector'
 import { Link } from '@remix-run/react'
@@ -28,8 +28,9 @@ export default function Example() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedDarkIndex, setSelectedDarkIndex] = useState(0);
   
-  const code = `
-  <header className="bg-white text-slate-500 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
+  const [selectedFileIndex, setSelectedFileIndex] = useState(0);
+
+  const code = `<header className="bg-white text-slate-500 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
     <div className="flex gap-12">
       <a className="font-bold text-slate-900" href="/">Hydrogen</a>
       <nav className="flex gap-8">
@@ -56,14 +57,13 @@ export default function Example() {
             d="M8.125 5a1.875 1.875 0 0 1 3.75 0v.375h-3.75V5Zm-1.25.375V5a3.125 3.125 0 1 1 6.25 0v.375h3.5V15A2.625 2.625 0 0 1 14 17.625H6A2.625 2.625 0 0 1 3.375 15V5.375h3.5ZM4.625 15V6.625h10.75V15c0 .76-.616 1.375-1.375 1.375H6c-.76 0-1.375-.616-1.375-1.375Z">
           </path>
         </svg>
-        <div class="text-white bg-slate-500 hover:bg-slate-800 absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px">
+        <div className="text-white bg-slate-500 hover:bg-slate-800 absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px">
           <span>3</span>
         </div>
       </button>
     </div>
   </header>`;
-const darkCode = `
-<header className="bg-slate-900 text-slate-100 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
+const darkCode = `<header className="bg-slate-900 text-slate-100 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
   <div className="flex gap-12">
     <a className="font-bold text-white" href="/">Hydrogen</a>
     <nav className="flex gap-8">
@@ -90,7 +90,7 @@ const darkCode = `
           d="M8.125 5a1.875 1.875 0 0 1 3.75 0v.375h-3.75V5Zm-1.25.375V5a3.125 3.125 0 1 1 6.25 0v.375h3.5V15A2.625 2.625 0 0 1 14 17.625H6A2.625 2.625 0 0 1 3.375 15V5.375h3.5ZM4.625 15V6.625h10.75V15c0 .76-.616 1.375-1.375 1.375H6c-.76 0-1.375-.616-1.375-1.375Z">
         </path>
       </svg>
-      <div class="text-slate-900 bg-slate-100 hover:bg-slate-50 absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px">
+      <div className="text-slate-900 bg-slate-100 hover:bg-slate-50 absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px">
         <span>3</span>
       </div>
     </button>
@@ -184,7 +184,7 @@ const darkCode = `
               Custom UI components for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-700 dark:from-blue-400 dark:to-indigo-600">commerce</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:text-center">
-              A component library for building custom storefronts. Styled with Tailwind CSS.
+              Easy mode for building and designing custom storefronts. Styled with Tailwind CSS.
             </p>
             <div className="mt-8 flex gap-x-4 sm:justify-center">
               <a
@@ -218,14 +218,20 @@ const darkCode = `
         <div className="mb-16">
           <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 mb-4">Recommended Installation</h3>
           <p className="text-slate-600 my-3">We recommend installing shopblocks as a Tailwind CSS plugin. In your terminal:</p>
-          <CodeEditor language="bash" code={installCode} />
+          <div className="rounded-lg overflow-auto">
+            <CodeEditor language="bash" code={installCode} />
+          </div>
           <p className="text-slate-600 my-3">Then, in your <span className="font-mono text-sm">tailwind.config.js</span> file:</p>
-          <CodeEditor language="javascript" code={pluginCode} />
+          <div className="rounded-lg overflow-auto">
+            <CodeEditor language="javascript" code={pluginCode} />
+          </div>
         </div>
         <div className="mb-16">
           <h3 className="text-2xl font-semibold tracking-tight sm:text-xl text-gray-700 dark:text-slate-200 mb-4">Using a CDN</h3>
           <p className="text-slate-600 my-3">Alternatively, add the following to the <span className="font-mono text-sm">head</span> tag of your root HTML file, for example <span className="font-mono text-sm">index.html, root.jsx, or _document.tsx</span>.</p>
-          <CodeEditor language="markup" code={cdnCode} />
+          <div className="rounded-lg overflow-auto">
+            <CodeEditor language="markup" code={cdnCode} />
+          </div>
         </div>
       </div>
       <div className="my-24">
@@ -258,7 +264,7 @@ const darkCode = `
               </Tab.List>
             </Tab.Group>
           </div>
-          <div className="max-h-[560px] overflow-scroll rounded-lg">
+          <div className="max-h-[560px] overflow-auto rounded-lg">
             <LiveProvider code={code}>
               {selectedIndex === 0 ? 
                 <LivePreview className="dots dark:dark-dots" /> : 
@@ -293,11 +299,29 @@ const darkCode = `
               </Tab.List>
             </Tab.Group>
           </div>
-          <div className="max-h-[560px] overflow-scroll rounded-lg">
+          <div className="relative">
             <LiveProvider code={darkCode}>
               {selectedDarkIndex === 0 ? 
-                <LivePreview className="dots dark:dark-dots" /> :
-                <CodeEditor language="jsx" code={darkCode} />
+                <LivePreview className="dots dark:dark-dots max-h-[560px] overflow-scroll rounded-lg" /> :
+                <>
+                  <Tab.Group selectedIndex={selectedFileIndex} onChange={setSelectedFileIndex}>
+                    <Tab.List className="flex space-x-1 rounded-tl-lg rounded-tr-lg bg-slate-900 pt-1 pr-1 pl-1">
+                      <Tab className={({ selected }) =>
+                        classNames(
+                          'rounded-tl-lg rounded-tr-lg py-1.5 px-2.5 text-sm font-mono leading-5 flex items-center',
+                          selected
+                            ? 'bg-slate-800 text-slate-300' 
+                            : 'bg-slate-600 text-slate-700'
+                        )
+                      }><DocumentIcon className="h-4 w-4 mr-2 font-bold opacity-70" />Navbar.jsx</Tab>
+                    </Tab.List>
+                    <Tab.Panels className="bg-slate-900 pl-1 pr-1 pb-1 rounded-br-lg rounded-bl-lg">
+                      <Tab.Panel>
+                        <CodeEditor language="jsx" code={darkCode} />
+                      </Tab.Panel>
+                    </Tab.Panels>
+                  </Tab.Group>
+                </>
               }
             </LiveProvider>
           </div>
