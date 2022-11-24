@@ -2,7 +2,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import { CopyButton } from '~/components/CopyButton'
 import vsDark from 'prism-react-renderer/themes/vsDark';
 
-export function CodeEditor(props) {
+export default function CodeEditor(props) {
   return (
     <Highlight {...defaultProps} className={props.className} code={props.code} language={props.language} theme={vsDark}>
       {({ tokens, getLineProps, getTokenProps }) => (

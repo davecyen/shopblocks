@@ -7,6 +7,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import { Header } from "~/components/Header"
+
 import styles from "./styles/app.css"
 
 const themeScript = `
@@ -65,7 +67,8 @@ export default function App() {
         <Links />
         <script dangerouslySetInnerHTML={({ __html: themeScript })} />
       </head>
-      <body className="h-full bg-white dark:bg-slate-900">
+      <body className="h-full bg-white dark:bg-slate-900 tracking-tight text-gray-700 dark:text-slate-200">
+        <Header />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
