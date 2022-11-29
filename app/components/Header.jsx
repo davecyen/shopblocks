@@ -33,12 +33,12 @@ export function Header() {
           <Search />
         </div>
         <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end items-center">
-        <Link className="text-sm mr-4 font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-slate-300" to="/docs">Components</Link>
+        <Link className="text-sm mr-4 font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300" to="/docs/installation">Components</Link>
         <Link to="https://figma.com" className="group mr-4" aria-label="Figma">
-          <FigmaIcon className="h-5 w-5 fill-slate-400 group-hover:fill-indigo-500 dark:group-hover:fill-slate-300" />
+          <FigmaIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
         </Link>
         <Link to="https://github.com" className="group mr-4" aria-label="GitHub">
-          <GitHubIcon className="h-5 w-5 fill-slate-400 group-hover:fill-indigo-500 dark:group-hover:fill-slate-300" />
+          <GitHubIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
         </Link>
         <ThemeSelector className="relative z-10" />
         </div>
@@ -47,7 +47,7 @@ export function Header() {
         <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto scrollbar-hide bg-white px-6 py-6 lg:hidden">
           <div className="flex h-9 items-center justify-between">
             <div className="flex">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Shop Blocks</span>
                 <Logo className="h-5 fill-slate-700 dark:fill-indigo-100/75" />
               </a>

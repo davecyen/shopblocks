@@ -20,8 +20,8 @@ export default function Installation() {
 }`;
   const installCode = `npm install --save @shopify/shopblocks`;
   const cdnCode = `<head>
-  <link href="https://cdn.shopblocks.com/shopblocks@0.0.1/dist/full.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.shopblocks.com"></script>
+  <link href="https://cdn.shopify.com/shopblocks@0.0.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.shopify.com"></script>
   <!-- ... -->
 </head>`;
   return (
@@ -31,8 +31,8 @@ export default function Installation() {
       </h2>
       <div className="mb-16">
         <h3 className="text-xl font-medium tracking-tight mb-4">Using npm (recommended)</h3>
-        <p className="mt-4 mb-3">Prerequesite: install and configure <Link to="https://tailwindcss.com">Tailwind CSS</Link> in your app.</p>
-        <p className="mt-4 mb-3">1. Install the shopblocks plugin for Tailwind.</p>
+        <p className="mt-4 mb-3"><span className="font-medium">Prerequesite:</span> Install and configure <Link className="font-medium text-blue-500" to="https://tailwindcss.com">Tailwind CSS</Link>.</p>
+        <p className="mt-4 mb-3 font-medium">1. Install <span className="font-mono text-sm">shopblocks</span>.</p>
         <Tab.Group selectedIndex={selectedFileIndex} onChange={setSelectedFileIndex}>
           <Tab.List className="flex space-x-1 rounded-tl-lg rounded-tr-lg bg-slate-900 pt-1 pr-1 pl-1">
             <Tab className={({ selected }) =>
@@ -50,7 +50,7 @@ export default function Installation() {
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
-        <p className="mt-8 mb-3">2. Add the plugin to your Tailwind config:</p>
+        <p className="mt-8 mb-3 font-medium">2. Add the plugin to your Tailwind config:</p>
         <Tab.Group selectedIndex={selectedFileIndex} onChange={setSelectedFileIndex}>
           <Tab.List className="flex space-x-1 rounded-tl-lg rounded-tr-lg bg-slate-900 pt-1 pr-1 pl-1">
             <Tab className={({ selected }) =>

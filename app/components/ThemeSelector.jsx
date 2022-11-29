@@ -45,7 +45,7 @@ function SystemIcon(props) {
 }
 
 export function ThemeSelector(props) {
-  let [selectedTheme, setSelectedTheme] = useState()
+  let [selectedTheme, setSelectedTheme] = useState(null)
 
   useEffect(() => {
     if (selectedTheme) {
@@ -85,12 +85,12 @@ export function ThemeSelector(props) {
         className="flex h-7 w-7 items-center justify-center rounded-lg shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
         aria-label={selectedTheme?.name}
       >
-        <LightIcon className="hidden h-4 w-4 fill-indigo-400 [[data-theme=light]_&]:block" />
-        <DarkIcon className="hidden h-4 w-4 fill-indigo-400 [[data-theme=dark]_&]:block" />
+        <LightIcon className="hidden h-4 w-4 fill-blue-500 dark:fill-blue-300 [[data-theme=light]_&]:block" />
+        <DarkIcon className="hidden h-4 w-4 fill-blue-500 dark:fill-blue-300 [[data-theme=dark]_&]:block" />
         <LightIcon className="hidden h-4 w-4 fill-slate-400 [:not(.dark)[data-theme=system]_&]:block" />
         <DarkIcon className="hidden h-4 w-4 fill-slate-400 [.dark[data-theme=system]_&]:block" />
       </Listbox.Button>
-      <Listbox.Options className="absolute top-full -left-[40px] mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800/30 backdrop-blur-sm dark:ring-white/5">
+      <Listbox.Options className="absolute top-full -left-[40px] mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/5">
         {themes.map((theme) => (
           <Listbox.Option
             key={theme.value}
@@ -99,7 +99,7 @@ export function ThemeSelector(props) {
               clsx(
                 'flex cursor-pointer select-none items-center rounded-[0.625rem] p-1',
                 {
-                  'text-indigo-400': selected,
+                  'text-blue-500 dark:text-blue-300': selected,
                   'text-slate-900 dark:text-white': active && !selected,
                   'text-slate-700 dark:text-slate-400': !active && !selected,
                   'bg-slate-100 dark:bg-slate-900/40': active,
@@ -114,7 +114,7 @@ export function ThemeSelector(props) {
                     className={clsx(
                       'h-4 w-4',
                       selected
-                        ? 'fill-indigo-400 dark:fill-indigo-300'
+                        ? 'fill-blue-500 dark:fill-blue-300'
                         : 'fill-slate-400'
                     )}
                   />

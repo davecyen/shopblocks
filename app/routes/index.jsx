@@ -15,8 +15,8 @@ export default function Index() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-slate-900 dark:text-indigo-100">
               Custom UI components for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-700 dark:from-blue-400 dark:to-indigo-600">commerce</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:text-center">
-              Easy mode for building custom storefronts. Styled with Tailwind CSS, powered by Shopify.
+            <p className="mt-6 text-xl font-medium leading-8 text-slate-500 dark:text-slate-400 sm:text-center">
+              A component library for building modern storefronts. Styled with Tailwind CSS, powered by Shopify.
             </p>
             <div className="mt-8 flex gap-x-4 sm:justify-center">
               <Link
@@ -30,7 +30,7 @@ export default function Index() {
               </Link>
               <a
                 href="#"
-                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 hover:from-blue-400 to-indigo-500 hover:to-indigo-500 dark:text-slate-50 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:ring-indigo-200/20"
+                className="inline-block rounded-full px-4 py-1.5 text-base font-semibold leading-7 text-blue-500 dark:text-slate-50 ring-1 ring-indigo-900/10 hover:ring-indigo-900/20 dark:ring-indigo-200/10 dark:hover:ring-indigo-200/20"
               >
                 View on GitHub
               </a>
