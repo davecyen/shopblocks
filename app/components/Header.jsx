@@ -11,7 +11,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="px-6 py-6 backdrop-blur-md sticky top-0 z-50">
+    <div className="px-6 py-6 backdrop-blur-sm z-50">
       <nav className="flex h-9 items-center justify-between" aria-label="Global">
         <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
           <a href="/" className="-m-1.5 p-1.5">
@@ -40,7 +40,7 @@ export function Header() {
         <Link to="https://github.com" className="group mr-4" aria-label="GitHub">
           <GitHubIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
         </Link>
-        <ThemeSelector className="relative z-10" />
+        <ThemeSelector className="relative z-10" position="top" />
         </div>
       </nav>
       <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>

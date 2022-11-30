@@ -22,7 +22,7 @@ function SearchIcon(props) {
   )
 }
 
-export function Search() {
+export function Search(props) {
   // let [isOpen, setIsOpen] = useState(false)
   let [modifierKey, setModifierKey] = useState()
 
@@ -46,11 +46,11 @@ export function Search() {
     <>
       <button
         type="button"
-        className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pl-4 md:pr-3.5 md:text-sm md:ring-1 md:ring-slate-300 md:hover:ring-slate-400 dark:md:bg-slate-800/25 dark:md:ring-inset dark:md:ring-white/5 dark:md:hover:bg-slate-700/25 dark:md:hover:ring-slate-500 lg:w-96"
+        className="flex items-center justify-center sm:justify-start md:h-auto w-full md:max-w-80 md:rounded-lg md:py-2 md:pl-3 md:pr-3 md:text-sm shadow-md hover:shadow-lg dark:ring-0 dark:bg-slate-700 dark:hover:bg-slate-700/90"
       >
-        <SearchIcon className="h-5 w-5 flex-none fill-slate-400 group-hover:fill-slate-500 dark:fill-slate-500 md:group-hover:fill-slate-400" />
+        <SearchIcon className="h-4 w-4 flex-none fill-slate-400 group-hover:fill-slate-500 dark:fill-slate-500 md:group-hover:fill-slate-400" />
         <span className="sr-only md:not-sr-only md:ml-2 md:text-slate-500 md:dark:text-slate-400">
-          Search docs
+          Search
         </span>
         {modifierKey && (
           <kbd className="ml-auto hidden font-medium text-slate-400 dark:text-slate-500 md:block">

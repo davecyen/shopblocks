@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Link, NavLink, Outlet, useLoaderData, useLocation} from "@remix-run/react";
+import { FigmaIcon, GitHubIcon } from '~/components/Icons'
+import { ThemeSelector } from "~/components/ThemeSelector"
 import { json } from "@remix-run/node"
+import { Logo } from "~/components/Logo"
+import { Search } from "~/components/Search"
+import { Header } from "~/components/Header"
 
 export const loader = async () => {
   return json({
@@ -90,10 +95,23 @@ export default function Docs() {
     }
   }, [location]);
   return (
-    <div className="flex w-full px-6 min-h-full">
-      <div className="hidden w-60 flex-shrink-0 pr-3 lg:block mt-4">
+    <>
+    <div className="w-full sm:hidden">
+      <Header />
+    </div>
+    <div className="flex w-full min-h-full">
+      <div className="hidden flex-col w-60 flex-shrink-0 pr-6 lg:block mt-12 pl-6">
+        <div className="flex items-center">
+          <a href="/" className="-m-0.5 p-0.5 flex flex-1">
+            <span className="sr-only">Shop Blocks</span>
+            <Logo className="h-5 fill-slate-700 dark:fill-slate-100" />
+          </a>
+        </div>
+        <div className="mt-6 mb-16">
+          <Search />
+        </div>
         {sections.map((section, i) => (
-          <div className="pb-12" key={i}>
+          <div className="pb-8" key={i}>
             <div className="font-medium text-sm text-slate-800 dark:text-slate-500 mb-2">{section.title}</div>
             <ul>
               {section?.links.map((navlink, i) => (
@@ -115,10 +133,22 @@ export default function Docs() {
             </ul>  
           </div>
         ))}
+        <div className="py-6 flex items-center absolute bottom-0">
+          <Link to="https://figma.com" className="group mr-4" aria-label="Figma">
+            <FigmaIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
+          </Link>
+          <Link to="https://github.com" className="group mr-4" aria-label="GitHub">
+            <GitHubIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
+          </Link>
+          <div className="flex">
+            <ThemeSelector className="relative z-10" position="bottom" />
+          </div>
+        </div>
       </div>
-      <div className="flex-grow px-6 lg:pr-0 min-h-full mt-4 overflow-auto">
+      <div className="flex-grow px-4 md:px-12 min-h-full pt-12 overflow-auto border-l border-1 border-slate-100 dark:border-slate-700">
         <Outlet />
       </div>
     </div>
+  </>
   )
 }
