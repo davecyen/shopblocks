@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLoaderData, useLocation} from "@remix-run/react";
 import { FigmaIcon, GitHubIcon } from '~/components/Icons'
 import { ThemeSelector } from "~/components/ThemeSelector"
@@ -85,6 +85,7 @@ export const loader = async () => {
 export default function Docs() {
   const { sections } = useLoaderData();
   const location = useLocation();
+  const [ showSublinks, setShowSublinks ] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -116,24 +117,27 @@ export default function Docs() {
             <ul>
               {section?.links.map((navlink, i) => (
                 <li className="py-1 flex-col w-full" key={i}>
-                  <NavLink to={navlink.to} className={({isActive}) => 
+                  <NavLink onClick={() => setShowSublinks( !showSublinks )} to={navlink.to} className={({isActive}) => 
                     isActive
                       ? 'text-blue-500 dark:text-slate-100 font-medium'
                       : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 hover:dark:text-slate-300 font-normal'
                     }>{navlink.title}</NavLink> 
-                    <ul>
-                      {navlink?.sublinks?.map((sublink, i) => (
-                        <li className="py-1 first:mt-2 last:mb-2 w-full text-sm pl-2" key={i}>
-                          <Link className="text-slate-500 hover:text-slate-800 dark:text-slate-400 hover:dark:text-slate-300 font-normal" to={sublink.to}>{sublink.title}</Link>
-                        </li>
-                      ))}
-                    </ul>
+                    {(navlink?.sublinks && showSublinks) && (
+                      <ul>
+                        {navlink?.sublinks?.map((sublink, i) => (
+                          <li className="py-1 first:mt-2 last:mb-2 w-full text-sm pl-2" key={i}>
+                            <Link className="text-slate-500 hover:text-slate-800 dark:text-slate-400 hover:dark:text-slate-300 font-normal" to={sublink.to}>{sublink.title}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    
                 </li>
               ))}
             </ul>  
           </div>
         ))}
-        <div className="py-6 flex items-center absolute bottom-0">
+        <div className="py-6 flex items-center fixed bottom-0">
           <Link to="https://figma.com" className="group mr-4" aria-label="Figma">
             <FigmaIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
           </Link>

@@ -45,9 +45,8 @@ function SystemIcon(props) {
 }
 
 export function ThemeSelector(props) {
-  let [selectedTheme, setSelectedTheme] = useState(null)
+  let [selectedTheme, setSelectedTheme] = useState(themes[2]);
   const position = props.position;
-  console.log ('position is', position);
 
   useEffect(() => {
     if (selectedTheme) {
@@ -94,10 +93,10 @@ export function ThemeSelector(props) {
       </Listbox.Button>
       <Listbox.Options className={
         clsx(
-          'absolute rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/5 mt-3 w-36 z-100',
+          'absolute rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/5 mt-3 w-36',
           {
-            'top-full -left-[40px] -translate-x-1/2': position === 'top',
-            'bottom-[40px] left-[70px] -translate-x-1/2': position === 'bottom',
+            'top-full -left-[40px] -translate-x-1/2 z-100': position === 'top',
+            'bottom-[40px] left-[70px] -translate-x-1/2 z-100': position === 'bottom',
           }
         )}>
         {themes.map((theme) => (

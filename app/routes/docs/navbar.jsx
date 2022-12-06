@@ -3,20 +3,16 @@ import { Tab } from "@headlessui/react"
 import { EyeIcon, CodeBracketIcon, DocumentIcon } from "@heroicons/react/24/outline"
 import { LiveProvider, LivePreview } from "react-live"
 import { AccountIcon, BagIcon } from '~/components/Icons'
-import { useSearchParams } from '@remix-run/react'
+import { useSearchParams, useLoaderData } from '@remix-run/react'
+import { json } from "@remix-run/node"
 import CodeEditor from "~/components/CodeEditor"
-import Navbar from '~/routes/blocks/Navbar'
-import NavDarkPreview from '~/routes/blocks/nav-dark'
-import PreviewCodeToggle from "~/components/PreviewCodeToggle"
+import Navbar from '~/routes/__blocks/Navbar'
+import NavDarkPreview from '~/routes/__blocks/nav-dark'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const scope = {BagIcon, AccountIcon, Navbar, NavDarkPreview};
-
-// const testCode = `<Navbar />`;
-// const testDarkCode = `<NavDarkPreview />`;
 const code = `
 <header className="bg-white text-slate-500 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
   <div className="flex gap-12">
@@ -62,64 +58,63 @@ const darkCode = `
   </div>
 </header>`;
 
-const blocks = [
-  {
-    title: 'Simple Navbar (Light)',
-    hashId: 'simple-light',
-    options: 
+export const loader = async () => {
+  return json({
+    blocks: [
       {
-        jsx: [
+        title: 'Simple Navbar (Light)',
+        options: 
           {
-            filename: 'Navbar.jsx',
-            code: code, 
+            jsx: [
+              {
+                filename: 'Navbar.jsx',
+                code: code, 
+              },
+            ],
+            ts: [
+              {
+                filename: 'Navbar.tsx',
+                code: `// Navbar.tsx TypeScript`,
+              },
+            ]
           },
-        ],
-        typescript: [
-          {
-            filename: 'Navbar.tsx',
-            code: `// Navbar.tsx TypeScript`,
-          },
-        ]
       },
-  },
-  {
-    title: 'Simple Navbar (Dark)',
-    hashId: 'simple-dark',
-    options: 
       {
-        jsx: [
+        title: 'Simple Navbar (Dark)',
+        options: 
           {
-            filename: 'Navbar.jsx',
-            code: darkCode, 
+            jsx: [
+              {
+                filename: 'Navbar.jsx',
+                code: darkCode, 
+              },
+            ],
+            ts: [
+              {
+                filename: 'Navbar.tsx',
+                code: `// Navbar.tsx TypeScript`,
+              },
+            ]
           },
-        ],
-        typescript: [
-          {
-            filename: 'Navbar.tsx',
-            code: `// Navbar.tsx TypeScript`,
-          },
-        ]
-      },
-  }
-]
+      }
+    ] 
+  });
+}
 
-export const loader = async ({params}) => {
-  return null;
-};
+const scope = {BagIcon, AccountIcon, Navbar, NavDarkPreview};
 
 export default function Nav() {
+  const { blocks } = useLoaderData();
   const [selectedFileIndex, setSelectedFileIndex] = useState(0);
-
-  const [searchParams] = useSearchParams();
-
   
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-slate-900 dark:text-slate-50 mb-12">
         Navbars
       </h2>
-      {blocks.map((block, i) => (
-        <div className="mb-24" id={block.hashId} key={i}>
+      {blocks.map((block, i) => {
+        return (
+        <div className="mb-24" key={i}>
           <div className="grid grid-cols-2 items-start justify-between space-y-4 md:flex-row md:items-center my-3">
             <div className="text-lg font-medium tracking-tight text-gray-700 dark:text-slate-200 my-0">{block.title}</div>
             <Tab.Group>
@@ -177,7 +172,8 @@ export default function Nav() {
             </Tab.Group>
           </div>
         </div>
-      ))}
+        )}
+      )}
       
     </div>  
   )

@@ -5,18 +5,23 @@ import { ClipboardIcon } from '@heroicons/react/24/outline'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
+import { Link } from '@remix-run/react'
+
 const languages = [
   {
     section: 'Static',
     options: [
       {
-        label: 'JSX'
+        label: 'JSX',
+        urlParam: '?c=jsx',
       }, 
       {
-        label: 'TypeScript'
+        label: 'TypeScript',
+        urlParam: '?c=ts',
       }, 
       {
-        label: 'HTML'
+        label: 'HTML',
+        urlParam: '?c=html',
       }, 
     ] 
   },
@@ -24,10 +29,12 @@ const languages = [
     section: 'Shopify',
     options: [
       {
-        label: 'Hydrogen'
+        label: 'Hydrogen',
+        urlParam: '?c=hydrogen',
       }, 
       {
-        label: 'Liquid'
+        label: 'Liquid',
+        urlParam: '?c=liquid',
       }, 
     ] 
   },
@@ -66,14 +73,15 @@ function LanguageDropdown() {
                   {language.options?.map((option, i) => (
                     <Menu.Item key={i}>
                       {({ active }) => (
-                        <button
+                        <Link
                           onClick={() => setSelectedLanguage(option.label)}
+                          to={option.urlParam}
                           className={`${
                             active ? 'text-slate-100 font-medium' : 'text-slate-300'
                           } group flex w-full items-center rounded-md px-2 py-1 text-sm`}
                         >
                           {option.label}
-                        </button>
+                        </Link>
                       )}
                     </Menu.Item>
                   ))}

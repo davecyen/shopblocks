@@ -40,7 +40,7 @@ export function Header() {
         <Link to="https://github.com" className="group mr-4" aria-label="GitHub">
           <GitHubIcon className="h-5 w-5 fill-slate-400 group-hover:fill-slate-800 dark:group-hover:fill-slate-300" />
         </Link>
-        <ThemeSelector className="relative z-10" position="top" />
+        <ThemeSelector className="relative" position="top" />
         </div>
       </nav>
       <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
