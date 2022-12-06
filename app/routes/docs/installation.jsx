@@ -46,7 +46,7 @@ export default function Installation() {
           </Tab.List>
           <Tab.Panels className="bg-slate-900 pl-1 pr-1 pb-1 rounded-br-lg rounded-bl-lg">
             <Tab.Panel>
-              <CodeEditor language="bash" code={installCode} />
+              <CodeEditor language="bash" code={installCode} showDropdown={false} />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
@@ -64,7 +64,7 @@ export default function Installation() {
           </Tab.List>
           <Tab.Panels className="bg-slate-900 pl-1 pr-1 pb-1 rounded-br-lg rounded-bl-lg">
             <Tab.Panel>
-              <CodeEditor language="javascript" code={pluginCode} />
+              <CodeEditor language="javascript" code={pluginCode} showDropdown={false} />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
@@ -85,7 +85,7 @@ export default function Installation() {
           </Tab.List>
           <Tab.Panels className="bg-slate-900 pl-1 pr-1 pb-1 rounded-br-lg rounded-bl-lg">
             <Tab.Panel>
-              <CodeEditor language="markup" code={cdnCode} />
+              <CodeEditor language="markup" code={cdnCode} showDropdown={false} />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

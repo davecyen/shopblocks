@@ -34,7 +34,8 @@ const code = `
       </div>
     </button>
   </div>
-</header>`;
+</header>
+`;
 const darkCode = `
 <header className="bg-slate-900 text-slate-100 flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8">
   <div className="flex gap-12">
@@ -142,7 +143,7 @@ export default function Nav() {
               </div>
 
               <Tab.Panels className="rounded-lg bg-white dark:bg-slate-800 shadow-inner col-span-2">
-                <LiveProvider code={block.options.jsx[0].code} scope={scope}>
+                <LiveProvider code={block.options.jsx[0].code} scope={scope} disabled={true}>
                   <Tab.Panel>
                     <div className="dots dark:dark-dots overflow-auto resize-x">
                       <LivePreview className="w-full" /> 
@@ -174,7 +175,6 @@ export default function Nav() {
         </div>
         )}
       )}
-      
     </div>  
   )
 }

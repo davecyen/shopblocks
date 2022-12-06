@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 
-import { ClipboardIcon } from '@heroicons/react/24/outline'
+import { ClipboardIcon, CheckIcon } from '@heroicons/react/24/outline'
 
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -95,22 +95,42 @@ function LanguageDropdown() {
   )
 }
 
-function CopyButton() {
+function CopyButton(props) {
+  const [copySuccess, setCopySuccess] = useState(false);
+  function copyToClipboard(e) {
+    navigator.clipboard.writeText(props.code)
+    // This is just personal preference.
+    // I prefer to not show the whole text area selected.
+    e.target.focus();
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 1500);
+  };
+
   return (
-    <button className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-700/80 hover:bg-slate-700/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-lg border-none border-transparent bg-slate-900/80 py-2 px-3 text-xs backdrop-blur-sm">
+    <button onClick={copyToClipboard} disabled={copySuccess} className="inline-flex items-center justify-center font-semibold cursor-pointer focus:outline-none disabled:opacity-30 border-slate-700 bg-none text-slate-400 hover:border-slate-700/80 hover:bg-slate-700/80 focus:ring-1 focus:ring-slate-800/80 focus:ring-offset-0 disabled:hover:border-slate-800 disabled:hover:bg-slate-800 disabled:hover:text-white rounded-lg border-none border-transparent bg-slate-900/80 py-2 px-3 text-xs backdrop-blur-sm">
       <span className="sr-only">Copy code</span>
-      <ClipboardIcon className="h-4 w-4 mr-1" /> Copy
+      {copySuccess ? (
+        <>
+          <CheckIcon className="h-4 w-4 mr-1 text-green-400" /> Copied
+        </>
+      ) : (
+        <>
+          <ClipboardIcon className="h-4 w-4 mr-1" /> Copy
+        </>
+      )}
     </button>
   )
 }
 
-export function EditorButtons() {
+export function EditorButtons(props) {
   return (
     <div className="relative">
       <div className="absolute inset-x-0 top-0 z-10 m-[2px] md:left-auto">
         <div className="flex items-stretch justify-end rounded-t-[10px] px-2 py-1 md:m-1 md:rounded-lg">
-          <LanguageDropdown />
-          <CopyButton />
+          {(props.showDropdown !== false) && (
+            <LanguageDropdown />
+          )}
+          <CopyButton code={props.code} />
         </div>
       </div>
     </div>
