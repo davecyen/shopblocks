@@ -85,9 +85,9 @@ export const loader = async () => {
 export default function Docs() {
   const { sections } = useLoaderData();
   const location = useLocation();
-  const [ showSublinks, setShowSublinks ] = useState(false);
 
   useEffect(() => {
+    console.log('location pathnmame is', location.pathname)
     if (location.hash) {
       const el = document.querySelector(location.hash);
       if (el) {
@@ -117,12 +117,12 @@ export default function Docs() {
             <ul>
               {section?.links.map((navlink, i) => (
                 <li className="py-1 flex-col w-full" key={i}>
-                  <NavLink onClick={() => setShowSublinks( !showSublinks )} to={navlink.to} className={({isActive}) => 
+                  <NavLink to={navlink.to} className={({isActive}) => 
                     isActive
                       ? 'text-blue-500 dark:text-slate-100 font-medium'
                       : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 hover:dark:text-slate-300 font-normal'
                     }>{navlink.title}</NavLink> 
-                    {(navlink?.sublinks && showSublinks) && (
+                    {(navlink?.sublinks && navlink.to === location.pathname ) && (
                       <ul>
                         {navlink?.sublinks?.map((sublink, i) => (
                           <li className="py-1 first:mt-2 last:mb-2 w-full text-sm pl-2" key={i}>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tab } from '@headlessui/react';
-import { DocumentIcon } from '@heroicons/react/24/outline'
+import { DocumentIcon, CommandLineIcon } from '@heroicons/react/24/outline'
 import CodeEditor from '~/components/CodeEditor'
 import { Link } from '@remix-run/react'
 
@@ -42,7 +42,7 @@ export default function Installation() {
                   ? 'bg-slate-800 text-slate-300' 
                   : 'bg-slate-600 text-slate-700'
               )
-            }><DocumentIcon className="h-4 w-4 mr-2 font-bold opacity-70" />Terminal</Tab>
+            }><CommandLineIcon className="h-4 w-4 mr-2 font-bold opacity-70" />Terminal</Tab>
           </Tab.List>
           <Tab.Panels className="bg-slate-900 pl-1 pr-1 pb-1 rounded-br-lg rounded-bl-lg">
             <Tab.Panel>
