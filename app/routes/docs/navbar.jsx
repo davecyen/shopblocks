@@ -59,7 +59,9 @@ const darkCode = `
   </div>
 </header>`;
 
-export const loader = async () => {
+export async function loader ({request}) {
+  const url = new URL(request.url);
+  const selectedCode = url.searchParams.getAll("c");
   return json({
     blocks: [
       {
@@ -77,7 +79,25 @@ export const loader = async () => {
                 filename: 'Navbar.tsx',
                 code: `// Navbar.tsx TypeScript`,
               },
-            ]
+            ],
+            html: [
+              {
+                filename: 'Navbar.html',
+                code: `<h1>Hi, my name is _</h1>`,
+              },
+            ],
+            h2: [
+              {
+                filename: 'Navbar.jsx',
+                code: `<Navbar />`,
+              },
+            ],
+            liquid: [
+              {
+                filename: 'Navbar.liquid',
+                code: `// Navbar.liquid`,
+              },
+            ],
           },
       },
       {

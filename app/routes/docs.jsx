@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLoaderData, useLocation} from "@remix-run/react";
 import { FigmaIcon, GitHubIcon } from '~/components/Icons'
 import { ThemeSelector } from "~/components/ThemeSelector"
@@ -36,11 +35,11 @@ export const loader = async () => {
           sublinks: [
             {
               title: 'Simple Navbar (Light)',
-              to: '/docs/navbar#simple-light',
+              to: '/docs/navbar',
             },
             {
               title: 'Simple Navbar (Dark)',
-              to: '/docs/navbar#simple-dark',
+              to: '/docs/navbar',
             },
           ]
           },
@@ -86,22 +85,13 @@ export default function Docs() {
   const { sections } = useLoaderData();
   const location = useLocation();
 
-  useEffect(() => {
-    console.log('location pathnmame is', location.pathname)
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) {
-        el.scrollIntoView({ block: "start", behavior: 'smooth' });
-      }
-    }
-  }, [location]);
   return (
     <>
     <div className="w-full sm:hidden">
       <Header />
     </div>
     <div className="flex w-full min-h-full">
-      <div className="hidden flex-col w-60 flex-shrink-0 pr-6 lg:block mt-12 pl-6">
+      <div className="hidden flex-col w-60 flex-shrink-0 pr-6 lg:block pt-12 pl-6 border-r border-1 border-slate-100 dark:border-slate-700">
         <div className="flex items-center">
           <a href="/" className="-m-0.5 p-0.5 flex flex-1">
             <span className="sr-only">Shop Blocks</span>
@@ -149,7 +139,7 @@ export default function Docs() {
           </div>
         </div>
       </div>
-      <div className="flex-grow px-4 md:px-12 min-h-full pt-12 overflow-auto border-l border-1 border-slate-100 dark:border-slate-700">
+      <div className="flex-grow px-4 md:px-12 max-w-screen-2xl ml-auto mr-auto min-h-full pt-12 overflow-auto">
         <Outlet />
       </div>
     </div>
